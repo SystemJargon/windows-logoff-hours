@@ -1,1 +1,13 @@
+# Replace username kids with whatever username is desired.
+# Day format is, Su, M, T, W, Th, F, Sa
+# uses 12 hour clock, not 24 hour clock.
+
+
+# To add all days of the Week and allow only login between 10am to 10pm.
 net user kids /time:M-Su,10am-10pm
+
+# To remove any logon hours
+net user kids /time:
+
+# Multiple days string with limits (or use just single days if wanted)
+net user kids /time:Sa,8am-4pm;M-F,4pm-8pm
