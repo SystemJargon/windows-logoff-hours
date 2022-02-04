@@ -4,9 +4,13 @@ create a group in pihole called bedtime-restrict
 
 add sites hosts you wish to block at times below to a new adlist called bedtime-restrict
 
+Example Block TikTok and Youtube list, filename pihole-adlist-bedtime-restrict.txt included.
+
 add this adlist to the same named group
 
-add clients say a kids VLAN as a member of this group bedtime-restrict
+add client subnet say a kids VLAN, as a member of this group bedtime-restrict
+
+update gravity via pihole GUI or cli, pihole -g
 
 
 Part 2 - Example Enable bedtime-restrict group at 10pm until 6am on every day of week from Sunday through Thursday aka school nights.
