@@ -9,9 +9,9 @@ add this adlist to the same named group
 add clients say a kids VLAN as a member of this group bedtime-restrict
 
 
-Part 2 - copy and paste below after issuing in cli of pihole, sudo crontab -e 
+Part 2 - Example Enable bedtime-restrict group at 10pm until 6am on every day of week from Sunday through Thursday aka school nights.
 
-Example Enable bedtime-restrict group at 10pm until 6am on every day of week from Sunday through Thursday aka school nights.
+copy and paste below after issuing in cli of pihole, sudo crontab -e 
 
 0 22 * * 0-4 sqlite3 /etc/pihole/gravity.db "update 'group' set enabled = 1 where name = 'bedtime-restrict'"
 
