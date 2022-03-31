@@ -12,6 +12,9 @@
 net user kids /time:M-Su,10am-10pm
 
 # To remove any logon hours
+net user kids /time:ALL
+
+# To restrict ALL logon hours (none allowed)
 net user kids /time:
 
 # Multiple days string with limits (or use just single days if wanted)
