@@ -19,3 +19,6 @@ net user kids /time:
 
 ## Multiple days string with limits (or use just single days if wanted)
 net user kids /time:Sa-Su,8am-9pm;M-F,4pm-9pm
+
+## Force logoff when time is up
+Scheduled task, set a time. Action: Program, "shutdown", Parameters/Arguments: "/l /f" (no quote marks).
