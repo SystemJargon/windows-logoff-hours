@@ -6,16 +6,16 @@ Day format is, Su, M, T, W, Th, F, Sa
 
 uses 12 hour clock, not 24 hour clock.
 
-## EXAMPLES ##
+# EXAMPLES #
 
-# To add all days of the Week and allow only login between 10am to 10pm.
+## To add all days of the Week and allow only login between 10am to 10pm.
 net user kids /time:M-Su,10am-10pm
 
-# To remove any logon hours
+## To remove any logon hours
 net user kids /time:ALL
 
-# To restrict ALL logon hours (none allowed)
+## To restrict ALL logon hours (none allowed)
 net user kids /time:
 
-# Multiple days string with limits (or use just single days if wanted)
+## Multiple days string with limits (or use just single days if wanted)
 net user kids /time:Sa-Su,8am-9pm;M-F,4pm-9pm
