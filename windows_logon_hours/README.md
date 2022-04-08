@@ -8,7 +8,7 @@ uses 12 hour clock, not 24 hour clock.
 
 ## EXAMPLES ##
 
-#To add all days of the Week and allow only login between 10am to 10pm.
+# To add all days of the Week and allow only login between 10am to 10pm.
 net user kids /time:M-Su,10am-10pm
 
 # To remove any logon hours
