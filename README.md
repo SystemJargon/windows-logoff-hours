@@ -1,8 +1,8 @@
 # parental-settings
 
-windows_logon_hours - restrict logon hours
+windows_logon_hours - restrict logon hours on Windows OS.
 
-pihole-bedtime-restrict - restrict sites/hosts at bedtime defined hours (unless you just turn off a seperate wifi SSID).
+pihole-bedtime-restrict - restrict sites/hosts at bedtime defined hours via PiHole (unless you just turn off a seperate wifi SSID).
 
 Info about PiHole if your new, visit https://docs.pi-hole.net/
 
