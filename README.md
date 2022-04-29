@@ -10,3 +10,5 @@ If you do not use pihole and rather just use Windows hosts file to filter safese
 https://github.com/lwsnz/windows-hosts-file
 
 Other alternatives you could use besides hosts file or pihole maybe like OpenDNS https://www.opendns.com/setupguide/#familyshield
+
+Also refer to [Pi-hole time restrict block by group](https://github.com/lwsnz/pihole/tree/main/time-restrict-block-by-group)
