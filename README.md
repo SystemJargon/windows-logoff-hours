@@ -1,6 +1,6 @@
 # parental-settings
 
-[windows_logon_hours] - restrict logon hours on Windows OS.
+[windows_logon_hours](restrict logon hours on Windows OS)
 
 ----
 ## Pi-hole stuff
