@@ -1,8 +1,9 @@
 # parental-settings
 
-[windows_logon_hours](restrict logon hours on Windows OS)
+[restrict logon hours on Windows OS](windows_logon_hours)
 
 ----
+
 ## Pi-hole stuff
 
 [Pi-hole time restrict block by group](https://github.com/lwsnz/pihole/tree/main/time-restrict-block-by-group)
