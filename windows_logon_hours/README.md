@@ -1,3 +1,10 @@
+Updated: just use the powershell script I've made to simplify this all.
+
+https://github.com/lwsnz/parental-settings/blob/main/windows_logon_hours/set-kids-logoff-time.ps1
+
+
+# How-To
+
 Open the commaand prompt as Administrator, powershell can work but may not recognize multi-string days using ";".
 
 Replace username "kids" with whatever username is desired.
@@ -6,7 +13,7 @@ Day format is, Su, M, T, W, Th, F, Sa
 
 uses 12 hour clock, not 24 hour clock.
 
-# EXAMPLES #
+## EXAMPLES ##
 
 ## To add all days of the Week and allow only login between 10am to 10pm.
 net user kids /time:M-Su,10am-10pm
