@@ -12,6 +12,23 @@
       Author : https://github.com/lwsnz
 #>
 
+#check if powershell is running with admin privilege
+
+function Test-Administrator  
+{  
+    $user = [Security.Principal.WindowsIdentity]::GetCurrent();
+    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
+}
+
+If (Test-Administrator = True) {
+    Write-host "Powershell is executed with Administrative privileges"
+    }
+Else {
+    Write-host "This script needs to be executed with Administrative privileges, exiting"
+    exit
+    } 
+
+
 # Create and register the scheduled task. 
 # WE NEED TO FORCE THE LOGOUT AND SO 'Logon Hours Allowed' below works in conjunction with this.
 # Set variables so we can easily change this or another parent friend without breaking the script
@@ -21,7 +38,7 @@ $time = "9pm"
 # DO NOT EDIT BELOW THIS LINE
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' '-NoProfile -WindowStyle Hidden -command "&(shutdown /l /f)"'
 $trigger =  New-ScheduledTaskTrigger -Daily -At $time
-Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Log Off Kids - Time Elapsed" -Description "Log Off Kids each day at set time. Time Elapsed" -User $username
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Log Off $username - Time Elapsed" -Description "Log Off $username each day at set time. Time Elapsed" -User $username
 
 # YOU MAY EDIT THIS IF YOU WISH. THIS WILL PREVENT THE USER OF A LOGIN BUT ONCE AT THE LOGON SCREEN. NOT IF ALREADY LOGGED IN.
 # Also set this for 'logon hours allowed'.
