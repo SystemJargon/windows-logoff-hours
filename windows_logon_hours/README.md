@@ -1,7 +1,3 @@
-Updated: just use the powershell script I've made to simplify this all.
-
-https://github.com/lwsnz/parental-settings/blob/main/windows_logon_hours/set-kids-logoff-time.ps1
-
 
 # How-To
 
