@@ -9,7 +9,7 @@
 
 ## Pi-hole stuff
 
-[Pi-hole time restrict block by group](https://github.com/lz-eng/pihole/tree/main/time-restrict-block-by-group)
+[Pi-hole time restrict block by group](https://github.com/lz-eng/pi-hole/tree/main/time-restrict-block-by-group)
 
 
 Use case, restrict sites/hosts at bedtime defined hours via PiHole (unless you just turn off a seperate wifi SSID).
