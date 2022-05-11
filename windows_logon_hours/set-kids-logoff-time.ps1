@@ -42,4 +42,8 @@ Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Log Off $use
 
 # YOU MAY EDIT THIS IF YOU WISH. THIS WILL PREVENT THE USER OF A LOGIN BUT ONCE AT THE LOGON SCREEN. NOT IF ALREADY LOGGED IN.
 # Also set this for 'logon hours allowed'.
-net user kids /time:"Sa-Su,8am-9pm;M-F,4pm-9pm"
+# school term hours
+net user kids /time:"Sa-Su,8am-9pm;M-F,3pm-9pm"
+
+# holidays hours
+#net user kids /time:"Sa-Su,8am-9pm;M-F,8am-9pm"
