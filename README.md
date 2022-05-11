@@ -26,7 +26,11 @@ Info about PiHole if your new, visit https://docs.pi-hole.net/
 If you do not use pihole and rather just use Windows hosts file to filter safesearch or youtube safe etc. have a look at [windows-hosts-file](https://github.com/lz-eng//windows-hosts-file) instead.
 
 
-Other alternatives you could use besides a hosts file or pihole;
+## Upstream / Public DNS providers
+Other alternatives you could use besides a hosts file, AdguardHome or Pi-hole;
 
 [OpenDNS](https://www.opendns.com/setupguide/#familyshield)
+
 [NextDNS](https://nextdns.io)
+
+And many more not listed here.
