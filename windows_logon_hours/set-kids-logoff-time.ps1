@@ -1,3 +1,8 @@
+# DO NOT EDIT BELOW THIS LINE
+
+##
+
+
 <# .SYNOPSIS
       Make a scheduled task to log off a user and set specific logon hours 
 .DESCRIPTION
@@ -29,21 +34,36 @@ Else {
     } 
 
 
-# Create and register the scheduled task. 
-# WE NEED TO FORCE THE LOGOUT AND SO 'Logon Hours Allowed' below works in conjunction with this.
-# Set variables so we can easily change this or another parent friend without breaking the script
-$username = "kids"
-$time = "9pm"
+## --------------------------------------------------------------------------------------------------------------##
 
-# DO NOT EDIT BELOW THIS LINE
+# Set variables so we can easily change this or another parent friend who isn't super tech savvy and without breaking the script
+### EDIT BETWEEN THE QUOTE MARKS, USERNAME AND TIMES AS YOU WISH. ###
+
+$username = "kids"
+$logofftime = "9pm"
+
+$logonhourstime_school = "Sa-Su,8am-9pm;M-F,3pm-9pm" # school term
+$logonhourstime_holidays = "Sa-Su,8am-9pm;M-F,8am-9pm" # school holidays
+
+## --------------------------------------------------------------------------------------------------------------##
+
+# Do not edit below this line unless you know what you are doing.
+
+# WE NEED TO FORCE THE LOGOUT AND SO 'Logon Hours Allowed' below works in conjunction with this.
+# Create and register the scheduled task. We may need to delete any existing task with the same name too.
+Unregister-ScheduledTask -TaskName "Log Off $username - Time Elapsed" # remove the existing task
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' '-NoProfile -WindowStyle Hidden -command "&(shutdown /l /f)"'
-$trigger =  New-ScheduledTaskTrigger -Daily -At $time
+$trigger =  New-ScheduledTaskTrigger -Daily -At $logofftime
 Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Log Off $username - Time Elapsed" -Description "Log Off $username each day at set time. Time Elapsed" -User $username
 
-# YOU MAY EDIT THIS IF YOU WISH. THIS WILL PREVENT THE USER OF A LOGIN BUT ONCE AT THE LOGON SCREEN. NOT IF ALREADY LOGGED IN.
-# Also set this for 'logon hours allowed'.
-# school term hours
-net user kids /time:"Sa-Su,8am-9pm;M-F,3pm-9pm"
+# --------------------------------------------------------------------------------------------------------------#
 
-# holidays hours
-#net user kids /time:"Sa-Su,8am-9pm;M-F,8am-9pm"
+# THIS WILL PREVENT THE USER OF A LOGIN BUT ONCE AT THE LOGON SCREEN. NOT IF ALREADY LOGGED IN.
+# Also set this for 'logon hours allowed'.
+
+### CAN CHANGE THE LOGONHOURSTIME BETWEEN QUOTE MARKS TO EITHER. NOTE # or any number of # IS A COMMENT LINE.
+## $logonhourstime_school
+## or $logonhourstime_school
+
+net user $username /time:"$logonhourstime_holidays"
+
