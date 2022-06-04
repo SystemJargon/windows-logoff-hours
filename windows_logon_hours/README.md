@@ -1,4 +1,4 @@
-<!-- Owner source https://github.com/lz-eng/parental-settings -->
+<!-- Owner source https://github.com/SystemJargon/parental-settings -->
 
 # How-To
 

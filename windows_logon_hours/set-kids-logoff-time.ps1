@@ -14,7 +14,7 @@
       Any regular or heavy usage would be better controlled by something like AD or similar with central management of user objects.
       
 .CREDIT
-      Author : https://github.com/lz-eng/parental-settings
+      Author : https://github.com/SystemJargon/parental-settings
 #>
 
 #check if powershell is running with admin privilege
