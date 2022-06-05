@@ -1,7 +1,4 @@
-# DO NOT EDIT BELOW THIS LINE
-
-##
-
+# Somelines you should not edit unless you know what you are doing.
 
 <# .SYNOPSIS
       Make a scheduled task to log off a user and set specific logon hours 
@@ -12,6 +9,8 @@
       Replace times and username 'kids' with your own requirements.
       I could make this a function psm1 file, but a ps1 I feel is more suited because it should be runonce, not often and a set-forget type situation.
       Any regular or heavy usage would be better controlled by something like AD or similar with central management of user objects.
+      
+      # is a commented non-actioned line
       
 .CREDIT
       Author : https://github.com/SystemJargon/parental-settings
@@ -43,14 +42,16 @@ $username = "kids"
 $logofftime = "9pm"
 
 $logonhourstime_school = "Sa-Su,8am-9pm;M-F,3pm-9pm" # school term
-$logonhourstime_holidays = "Sa-Su,8am-9pm;M-F,8am-9pm" # school holidays
-
-## --------------------------------------------------------------------------------------------------------------##
+# $logonhourstime_holidays = "Sa-Su,8am-9pm;M-F,8am-9pm" # school holidays
 
 # Do not edit below this line unless you know what you are doing.
+## --------------------------------------------------------------------------------------------------------------##
 
-# WE NEED TO FORCE THE LOGOUT AND SO 'Logon Hours Allowed' below works in conjunction with this.
+## FORCE-LOGOUT-HOURS
+
+# This section is to force the logout of said user/s at times defined. 
 # Create and register the scheduled task. We may need to delete any existing task with the same name too.
+
 Unregister-ScheduledTask -TaskName "Log Off $username - Time Elapsed" # remove the existing task
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' '-NoProfile -WindowStyle Hidden -command "&(shutdown /l /f)"'
 $trigger =  New-ScheduledTaskTrigger -Daily -At $logofftime
@@ -58,12 +59,13 @@ Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Log Off $use
 
 # --------------------------------------------------------------------------------------------------------------#
 
-# THIS WILL PREVENT THE USER OF A LOGIN BUT ONCE AT THE LOGON SCREEN. NOT IF ALREADY LOGGED IN.
-# Also set this for 'logon hours allowed'.
+## NEW-LOGIN-HOURS
+
+# THIS WILL PREVENT THE USER FOR NEW LOGINS AT TIMES DEFINED. 
+# Utilizies Windows feature 'Logon Hours Allowed'.
+# IF they are logged in already, the above ## FORCE-LOGOUT-HOURS section will take care of this.
 
 ### CAN CHANGE THE LOGONHOURSTIME BETWEEN QUOTE MARKS TO EITHER. NOTE # or any number of # IS A COMMENT LINE.
-## $logonhourstime_school
-## or $logonhourstime_school
 
-net user $username /time:"$logonhourstime_holidays"
+net user $username /time:"$logonhourstime_school"
 
