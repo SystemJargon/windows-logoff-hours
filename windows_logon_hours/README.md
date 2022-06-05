@@ -1,6 +1,17 @@
 <!-- Owner source https://github.com/SystemJargon/parental-settings -->
 
-# How-To
+
+I have a powershell script which does most of the command line and scheduled task work for you.
+
+<b>Filename: set-kids-logoff-time.ps1</b>
+
+You of course may need to edit the two or so lines in the PS1 script for the defined time / username variables that suits your requirements.
+
+Otherwise copy and paste the command line examples given, again change username/time to suit your requirements.
+
+----
+
+## How-To
 
 Open the commaand prompt as Administrator, powershell can work but may not recognize multi-string days using ";".
 
@@ -12,17 +23,17 @@ uses 12 hour clock, not 24 hour clock.
 
 ## EXAMPLES ##
 
-## To add all days of the Week and allow only login between 10am to 10pm.
+### To add all days of the Week and allow only login between 10am to 10pm.
 net user kids /time:M-Su,10am-10pm
 
-## To remove any logon hours
+### To remove any logon hours
 net user kids /time:ALL
 
-## To restrict ALL logon hours (none allowed)
+### To restrict ALL logon hours (none allowed)
 net user kids /time:
 
-## Multiple days string with limits (or use just single days if wanted)
+### Multiple days string with limits (or use just single days if wanted)
 net user kids /time:Sa-Su,8am-9pm;M-F,4pm-9pm
 
-## Force logoff when time is up
+### Force logoff when time is up
 Scheduled task, set a time. Action: Program, "shutdown", Parameters/Arguments: "/l /f" (no quote marks).
