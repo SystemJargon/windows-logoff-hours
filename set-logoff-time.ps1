@@ -1,56 +1,26 @@
-# Somelines you should not edit unless you know what you are doing.
+#Requires -RunAsAdministrator
 
-<# .SYNOPSIS
-      Make a scheduled task to log off a user and set specific logon hours 
-.DESCRIPTION
-      Make a scheduled task to log off a user and set specific logon hours.    
-.NOTES
-      This was written for a kids user and does not require ActiveDirectory. It is a local account.
-      Replace times and username 'kids' with your own requirements.
-      I could make this a function psm1 file, but a ps1 I feel is more suited because it should be runonce, not often and a set-forget type situation.
-      Any regular or heavy usage would be better controlled by something like AD or similar with central management of user objects.
-      
-      # is a commented non-actioned line
-      
-.CREDIT
-      Author : https://github.com/SystemJargon/parental-settings
-#>
+# A powershell script to resolve login times for kids.
 
-#check if powershell is running with admin privilege
+# name this script as logon-policy-username.ps1 and replace username per user to execute this script for. 
+# example logon-policy-bobby.ps1 logon-policy-angelica.ps1 and change up the times between them is desired.
 
-function Test-Administrator  
-{  
-    $user = [Security.Principal.WindowsIdentity]::GetCurrent();
-    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
-}
+# Variables for Scheduled Task to force the logout
+$username = "kids" # replace as required
+$logofftime = "9pm" # replace as required
 
-If (Test-Administrator = True) {
-    Write-host "Powershell is executed with Administrative privileges"
-    }
-Else {
-    Write-host "This script needs to be executed with Administrative privileges, exiting"
-    exit
-    } 
-
-
-## --------------------------------------------------------------------------------------------------------------##
-
-# Set variables so we can easily change this or another parent friend who isn't super tech savvy and without breaking the script
-### EDIT BETWEEN THE QUOTE MARKS, USERNAME AND TIMES AS YOU WISH. ###
-
-$username = "kids"
-$logofftime = "9pm"
-
+# Variables for the Logon Hours allowed once logged out / not already logged in.
 $logonhourstime_school = "Sa-Su,8am-9pm;M-F,3pm-9pm" # school term
-# $logonhourstime_holidays = "Sa-Su,8am-9pm;M-F,8am-9pm" # school holidays
+# $logonhourstime_noschool = "Sa-Su,8am-9pm;M-F,8am-9pm" # school holidays
 
-# Do not edit below this line unless you know what you are doing.
+
+########### Do not edit below this line unless you know what you are doing. ###########
 ## --------------------------------------------------------------------------------------------------------------##
 
-## FORCE-LOGOUT-HOURS
-
-# This section is to force the logout of said user/s at times defined. 
+## SCHEDULED TASK TO FORCE LOGOUT
+# This section is to force the logout of said user/s at times defined using a scheduled task.
 # Create and register the scheduled task. We may need to delete any existing task with the same name too.
+# Do not edit between these dotted lines as they use all variables for input of time and username
 
 Unregister-ScheduledTask -TaskName "Log Off $username - Time Elapsed" # remove the existing task
 $action = New-ScheduledTaskAction -Execute 'Powershell.exe' '-NoProfile -WindowStyle Hidden -command "&(shutdown /l /f)"'
@@ -59,13 +29,14 @@ Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Log Off $use
 
 # --------------------------------------------------------------------------------------------------------------#
 
-## NEW-LOGIN-HOURS
-
-# THIS WILL PREVENT THE USER FOR NEW LOGINS AT TIMES DEFINED. 
+## USER POLICY FOR LOGON HOURS
+# THIS WILL PREVENT THE USER FOR NEW LOGINS AT TIMES DEFINED. VALID ONCE THE USERNAME HAS BEEN LOGGED OUT ALREADY (IN PART BY THE ABOVE SECTION).
 # Utilizies Windows feature 'Logon Hours Allowed'.
 # IF they are logged in already, the above ## FORCE-LOGOUT-HOURS section will take care of this.
 
-### CAN CHANGE THE LOGONHOURSTIME BETWEEN QUOTE MARKS TO EITHER. NOTE # or any number of # IS A COMMENT LINE.
+### CAN CHANGE THE LOGONHOURSTIME BETWEEN QUOTE MARKS TO EITHER. NOTE # or any number of # IS A COMMENT LINE and WILL not be used.
+
 
 net user $username /time:"$logonhourstime_school"
+#net user $username /time:"logonhourstime_noschool"
 
