@@ -1,4 +1,7 @@
+
 #Requires -RunAsAdministrator
+
+# Created by https://github.com/SystemJargon/windows-logoff-hours
 
 # A powershell script to resolve login times for kids.
 
