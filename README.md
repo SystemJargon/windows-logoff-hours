@@ -4,7 +4,10 @@
 I have a powershell script which does most of the command line and scheduled task work for you.
 It it commented to self-explain what it does mostly.
 
-<b>Filename: set-logoff-time.ps1</b>
+<b>Filename: set-logoff-time.ps1
+
+* [View in GitHub](https://github.com/SystemJargon/windows-logoff-hours/blob/main/set-logoff-time.ps1) 
+* [RAW PS1 file / download](https://raw.githubusercontent.com/SystemJargon/windows-logoff-hours/main/set-logoff-time.ps1)
 
 ----
 
