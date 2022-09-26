@@ -1,5 +1,5 @@
 ---
-name: issue.md
+name: Issue
 about: Create an issue.
 title: "[Issue] - "
 labels: bug
