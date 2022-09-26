@@ -2,14 +2,14 @@
 
 
 I have a powershell script which does most of the command line and scheduled task work for you.
+It it commented to self-explain what it does mostly.
 
-<b>Filename: set-kids-logoff-time.ps1</b>
-
-You of course may need to edit the two or so lines in the PS1 script for the defined time / username variables that suits your requirements.
-
-Otherwise copy and paste the command line examples given, again change username/time to suit your requirements.
+<b>Filename: set-logoff-time.ps1
 
 ----
+
+Otherwise use the guide below / copy and paste the command line examples given, again change username/time to suit your requirements.
+
 
 ## How-To
 
